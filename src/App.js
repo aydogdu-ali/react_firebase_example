@@ -1,14 +1,16 @@
 
 import './App.css';
-
+import LoginContextProvider from './context/LoginContextProvider.jsx';
 import AppRouter from './router/AppRouter';
 
 
 function App() {
   return (
     <div className="App">
-    <AppRouter/>
-        </div>
+      <LoginContextProvider>
+        <AppRouter />
+      </LoginContextProvider>
+    </div>
   );
 }
 

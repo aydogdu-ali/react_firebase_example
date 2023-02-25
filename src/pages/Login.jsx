@@ -11,7 +11,7 @@ const [password, setPassword] = useState("");
 const handleSubmit= async(e)=>{
   e.preventDefault()
   
-   const user = await UserLogin(email, password,)
+   const user = await UserLogin(email, password)
 
  console.log(user)
 }

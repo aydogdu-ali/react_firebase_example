@@ -18,8 +18,13 @@
  box-shadow: rgba(0, 0, 0, 0.9) 2px 2px 5px 1px;
 }
 
-.carousel.img:hover{
-  transform: scale(0.98);
+/*Navbar Css*/
+.logo{
+  width:70px
+}
+
+.word-spacing span{
+  word-spacing: 25px;
 }
 
 .register{

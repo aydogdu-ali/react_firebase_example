@@ -13,9 +13,10 @@ const [password, setPassword] = useState("");
 const handleSubmit= async(e)=>{
   e.preventDefault()
   const  displayName =firstName
-   const user = await register(email, password, displayName)
+    let user =await register(email, password, displayName)
+    console.log(user)
 
- console.log(user)
+
 }
 
   return (

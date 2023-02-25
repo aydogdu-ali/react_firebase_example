@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 
 // firebase bizim için verdiği  konfigürasyon dosyasını import ediyoruz.
 const firebaseConfig = {
@@ -25,11 +25,8 @@ const auth = getAuth(app);
 
 export const register = async (email, password, displayName) => {
   try {
-    const { user } = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    const user = await createUserWithEmailAndPassword(auth, email, password);
+    //kullanıcı kayıt olur olmaz proflini ismini güncelleme methodu (register sayfasında parametre olarak gönderiliyor.)
     await updateProfile(auth.currentUser, {
       displayName: displayName,
     });
@@ -51,3 +48,33 @@ export const UserLogin = async (email, password, navigate) => {
     console.log(error.message);
   }
 };
+
+//kullanıcı bilgisini takip eden yöntem
+//giriş-çıkış işlemleri için
+
+  export const userObserver = (setCurrentUser)=>{
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const {email, displayName, photoURL}= user
+       setCurrentUser({ email, displayName, photoURL });
+      } else {
+        /*çıkış yaptığında displayname  gözükmeyecek*/
+        setCurrentUser(false)
+        console.log("kullanıcı çıkış yaptı")
+      }
+    });
+
+  }
+
+
+    // kullanıcı çıkış yaptığında kullanılacak yöntem
+
+  export const logOut = () => {
+    try {
+      signOut(auth);
+        
+    } catch (error) {
+      console.log(error);
+    }
+  };
