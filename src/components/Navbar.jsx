@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import Logo from "../assets/firebase.png"
+import { logOut } from '../auth/firebase';
 import {LoginContext} from "../context/LoginContextProvider"
 
 const Navbar = () => {
@@ -14,11 +15,13 @@ const Navbar = () => {
           <Link to="/" className="navbar-brand">
             <img className="logo" src={Logo} alt="logo" />
           </Link>
-          <span> 
-            {currentUser && <span className='mx-3 word-spacing'> Merhaba,     {currentUser?.displayName}
-          
-          </span>}
-          
+          <span style={{color:"red"}}>
+            {currentUser && (
+              <span className="mx-3 word-spacing">
+                {" "}
+                Merhaba, {currentUser?.displayName}
+              </span>
+            )}
           </span>
         </span>
 
@@ -33,16 +36,26 @@ const Navbar = () => {
               Gallery
             </Link>
           </li>
-          <li className="nav-item">
+          { !currentUser &&(<li className="nav-item">
             <Link to="/register" className="nav-link" href="#">
               Register
             </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/login" className="nav-link ">
-              Login
-            </Link>
-          </li>
+          </li>)}
+
+          {currentUser ? (
+            <li className="nav-item">
+              <Link to="/login" className="nav-link " 
+              onClick = {logOut}>
+                Logout
+              </Link>
+            </li>
+          ) : (
+            <li className="nav-item">
+              <Link to="/login" className="nav-link ">
+                Login
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>
