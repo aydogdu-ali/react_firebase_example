@@ -12,7 +12,7 @@ const [password, setPassword] = useState("");
 
 const handleSubmit= async(e)=>{
   e.preventDefault()
-  const  displayName =firstName
+  const displayName = (firstName[0].toUpperCase() + firstName.substring(1));
     let user =await register(email, password, displayName)
     console.log(user)
 
@@ -29,7 +29,7 @@ const handleSubmit= async(e)=>{
         <div className="form-floating mb-3">
           <input
             type="text"
-            className="form-control "
+            className="form-control  "
             id="floatingInput"
             placeholder="Adınızı Giriniz"
             value={firstName}
@@ -40,7 +40,7 @@ const handleSubmit= async(e)=>{
         <div className="form-floating mb-3">
           <input
             type="email"
-            className="form-control "
+            className="form-control  "
             id="floatingInput"
             placeholder="Mail Adresini Giriniz"
             value={email}
@@ -51,7 +51,7 @@ const handleSubmit= async(e)=>{
         <div className="form-floating">
           <input
             type="password"
-            className="form-control"
+            className="form-control "
             id="floatingPassword"
             placeholder="şifrenizi Giriniz"
             value={password}

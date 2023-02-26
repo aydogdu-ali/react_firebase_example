@@ -30,5 +30,29 @@
 .register{
 
   max-width: 800px;
+ 
+}
 
+/*Regiter Css*/
+.register form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.register form input{
+  width: 300px
+}
+
+
+/*Gallery Css*/
+.nodata-img {
+  display: block;
+  width: 500px;
+  padding: 0;
+   border-radius: 20px;
+
+  box-shadow: 2px 3px 4px 5px rgba(0, 0, 0, 0.7);
+ margin: 5rem auto;
 }
