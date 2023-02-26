@@ -4,6 +4,7 @@ import { LoginContext } from "../context/LoginContextProvider";
 import Loading from "../assets/loading.gif"
 import Detail from "./Detail";
 import NODATA from "../assets/NODATA.png"
+import Pagination from "../components/Pagination";
 
 const Gallery = () => {
   const [searchText, setSearchText] = useState("");
@@ -12,12 +13,12 @@ const Gallery = () => {
 
   const [sonuc, setSonuc] = useState("");
   const { currentUser } = useContext(LoginContext);
-  // const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
-  // const totalPages = 4;
-  // const startIndex = (page - 1) * 6;
-  // const selectedData = show.slice(startIndex, startIndex + 6);
+  const totalPages = 4;
+  const startIndex = (page - 1) * 6;
+  const selectedData = show.slice(startIndex, startIndex + 6);
 
   // const API_KEY = process.env.REACT_APP_PIXABAY_API_KEY 
   
@@ -36,15 +37,15 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
       .catch((error) => console.log(error));
   };
 
-  console.log(getAPI);
+ 
 
   useEffect(() => {
     getAPI(url);
   }, [url]);
 
-  // const handleClick = (num) => {
-  //   setPage(num);
-  // };
+  const handleClick = (num) => {
+    setPage(num);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,7 +57,7 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
       getAPI(searchAPI + searchText);
       setSearchText("");
       setSonuc(searchText);
-      // setPage(1);
+      setPage(1);
     }
   };
 
@@ -72,7 +73,7 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
             <div className="gallery-form">
               <input
                 className="form-control"
-                placeholder="Flower, Cat, City..."
+                placeholder="Car, Flower, Winter..."
                 type="text"
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
@@ -85,12 +86,12 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
           </form>
 
           <div>
-            {/* <Pagination
+            <Pagination
               page={page}
               setPage={setPage}
               totalPages={totalPages}
               handleClick={handleClick}
-            /> */}
+            />
           </div>
           {sonuc && (
             <div
@@ -110,7 +111,7 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
           {!loading && show.length === 0 && (
             <img className="nodata-img" src={NODATA} alt="nodata" />
           )}
-          {show.map((data) => {
+          {selectedData.map((data) => {
             return <Detail key={data.id} data={data} />;
           })}
         </div>
