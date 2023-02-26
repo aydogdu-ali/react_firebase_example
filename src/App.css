@@ -33,6 +33,22 @@
  
 }
 
+.dark{
+  background-color: rgba(0, 0, 0, 0.01);
+  padding: 0.5rem 0;
+  box-shadow: 2px 3px 5px 1px rgba(0, 0, 0, 0.8);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+
+}
+
+.nav-item :hover {
+  color: red;
+}
+
+
+
 /*Regiter Css*/
 .register form{
   display: flex;
@@ -55,4 +71,64 @@
 
   box-shadow: 2px 3px 4px 5px rgba(0, 0, 0, 0.7);
  margin: 5rem auto;
+}
+
+.color{
+
+  color:orange
+}
+
+
+/* Pagination Css*/
+
+.page-link {
+  color: #b70808;
+  cursor: pointer;
+}
+
+.page-link:hover,
+.page-link:focus {
+  background-color: #08bba9c0;
+  color: #fbf8f3;
+}
+
+.pagination-active {
+  background-color: #0c8dc9c0;
+  color: #fff;
+}
+
+.pagination-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+
+/*Galler Img*/
+
+
+.card-image :hover{
+  transform: scale(.98);
+}
+.card-img {
+
+
+  height: 300px;
+
+
+}
+
+/*Detail*/
+
+.detail-img{
+  
+ 
+  
+  align-items: center;
+}
+
+.image-url{
+margin: auto;
+
 }
