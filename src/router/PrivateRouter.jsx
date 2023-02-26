@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import Login from '../pages/Login'
+import { Outlet } from 'react-router-dom';
+import  { LoginContext } from "../context/LoginContextProvider";
+
 
 const PrivateRouter = () => {
+   const { currentUser } = useContext(LoginContext);
   return (
-    <div>PrivateRouter</div>
+    currentUser ? <Outlet /> : <Login />
   )
 }
 

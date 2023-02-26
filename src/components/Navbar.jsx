@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="container d-flex justify-content-around align-items-center mt-5 mx-auto ">
+      <div className="container d-flex justify-content-around align-items-center mt-5 mx-auto  rounded dark">
         <span>
           <Link to="/" className="navbar-brand">
             <img className="logo" src={Logo} alt="logo" />
@@ -19,7 +19,7 @@ const Navbar = () => {
             {currentUser && (
               <span className="mx-3 word-spacing">
                 {" "}
-                Merhaba, {currentUser?.displayName}
+                Hello, {currentUser?.displayName}
               </span>
             )}
           </span>
