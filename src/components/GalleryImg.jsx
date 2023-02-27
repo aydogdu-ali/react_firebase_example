@@ -7,9 +7,9 @@ const GalleryImg = ({data}) => {
 
   console.log(data)
 
+  // detayı tıklanan fotografın id sini alıp detay sayfasına yönlendirdim.
   const detailHandle = () => {
-   
-      navigate(`/detail/${id}`);
+        navigate(`/detail/${id}`);
    
   };
 

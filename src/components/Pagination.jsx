@@ -3,8 +3,8 @@ const Pagination = ({ totalPages, page, setPage, handleClick }) => {
   const pages = [...Array(totalPages).keys()].map((num) => num + 1);
 
   return (
-    <div>
-      <ul className="pagination pagination-div">
+    <div className=' p-5'>
+      <ul className="pagination pagination-div ">
         <li className={page === 1 ? `page-item disabled` : `page-item`}>
           <p
             className="page-link"

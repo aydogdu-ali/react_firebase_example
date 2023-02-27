@@ -15,7 +15,9 @@ const Navbar = () => {
           <Link to="/" className="navbar-brand">
             <img className="logo" src={Logo} alt="logo" />
           </Link>
-          <span style={{color:"red"}}>
+
+          {/*Kullanıcı varsa kayıt olduğu ismini gösterdim.*/ }
+                    <span style={{color:"red"}}>
             {currentUser && (
               <span className="mx-3 word-spacing">
                 {" "}
@@ -36,6 +38,7 @@ const Navbar = () => {
               Gallery
             </Link>
           </li>
+          {/*Kullanıcı yoksa register linki gözükecek varsa log out linki gözükecek.*/}
           { !currentUser &&(<li className="nav-item">
             <Link to="/register" className="nav-link" href="#">
               Register

@@ -21,6 +21,7 @@ const Gallery = () => {
   const selectedData = show.slice(startIndex, startIndex + 6);
 
   // const API_KEY = process.env.REACT_APP_PIXABAY_API_KEY 
+
   
 const api = "31725179-e9547203f59a4095ebc0c6c08";
   const url = `https://pixabay.com/api/?key=${api}&image_type=photo&lang=en`;
@@ -43,10 +44,13 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
     getAPI(url);
   }, [url]);
 
+  // pagination'a gönderilen parametre
   const handleClick = (num) => {
     setPage(num);
   };
 
+
+  // Api den veri çekme fonksiyonu
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchText && !currentUser) {
@@ -62,7 +66,7 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
   };
 
   return (
-    <div className="gallery mt-3 mx-auto">
+    <div className="gallery mt-3 mx-auto mb-5">
       {loading ? (
         <div className="loading-gif">
           <img src={Loading} alt="loading" />
@@ -82,6 +86,7 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
           </form>
           {sonuc && (
             <div
+              /*gelen veri yoksa sonuç yazısını gösterme */
               className={
                 !loading && show.length === 0
                   ? "d-none mt-3 mb-1"
@@ -94,28 +99,34 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
               </span>
             </div>
           )}
+          {/*gelen veri yoksa loadin false aranan kelime ile ilgili resim bulunmadığı gösterir.*/}
           {!loading && show.length === 0 && (
             <img className="nodata-img" src={NODATA} alt="nodata" />
           )}
           <div className="row  d-flex justify-content-center ">
             {selectedData.map((data, id) => {
               return (
-                <div  key = {id} className=" g-5 col-12 col-sm-6 col-md-4 col-lg-3 ">
-                  <GalleryImg  data={data} />
+                <div
+                  key={id}
+                  className=" g-5 col-12 col-sm-6 col-md-4 col-lg-3 "
+                >
+                  <GalleryImg data={data} />
                 </div>
-              )
+              );
             })}
           </div>
-          
         </div>
       )}
-      <div>
-        <Pagination
-          page={page}
-          setPage={setPage}
-          totalPages={totalPages}
-          handleClick={handleClick}
-        />
+      <div className="mb-5">
+        {/*arama sınucu 6 dan büyükse pagination gözükür.*/}
+        {show.length > 6 && (
+          <Pagination
+            page={page}
+            setPage={setPage}
+            totalPages={totalPages}
+            handleClick={handleClick}
+          />
+        )}
       </div>
     </div>
   );
