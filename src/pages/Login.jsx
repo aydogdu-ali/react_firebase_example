@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+
 import { UserLogin } from "../auth/firebase";
+import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
+  const navigate = useNavigate()
   
 
 const [email, setEmail] = useState("");
@@ -12,7 +15,7 @@ const [password, setPassword] = useState("");
 const handleSubmit= async(e)=>{
   e.preventDefault()
   
-   const user = await UserLogin(email, password)
+   const user = await UserLogin(email, password, navigate);
 
  console.log(user)
 }
@@ -23,7 +26,7 @@ const handleSubmit= async(e)=>{
         className="container W-50 bg-info text-dark rounded mt-5 mb-5 mx-auto p-5"
         onSubmit={handleSubmit}
       >
-        <h2 className="text-danger mb-5 "> Hoşgeldiniz</h2>
+        <h2 className="text-danger mb-5 "> Welcome</h2>
 
         <div className="form-floating mb-3">
           <input
@@ -34,7 +37,7 @@ const handleSubmit= async(e)=>{
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label htmlFor="floatingInput">Mail Adresiniz </label>
+          <label htmlFor="floatingInput">Enter e-mail </label>
         </div>
         <div className="form-floating">
           <input
@@ -45,17 +48,15 @@ const handleSubmit= async(e)=>{
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <label htmlFor="floatingPassword">Şifreniz</label>
+          <label htmlFor="floatingPassword">Enter password</label>
         </div>
         <button
-          className="btn btn-success mt-5 w-25"
+          className="btn btn-warning mt-5 w-25"
           disabled={!email || !password}
           type="submit"
         >
-          Giriş
+          Login
         </button>
-
-       
       </form>
     </div>
   );
