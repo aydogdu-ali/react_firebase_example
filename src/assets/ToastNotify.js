@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+  import "react-toastify/dist/ReactToastify.css";
 
 // uyarı mesajları için fonksiyonlar tanımladım. Toastifay kütüphanesini kullandım.
 
