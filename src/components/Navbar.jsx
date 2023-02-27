@@ -27,7 +27,7 @@ const Navbar = () => {
 
         <ul className="nav justify-content-center">
           <li className="nav-item">
-            <Link to="/" className="nav-link active" aria-current="page">
+            <Link to="/" className="nav-link " >
               Home
             </Link>
           </li>

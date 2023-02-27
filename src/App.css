@@ -49,6 +49,7 @@
 
 
 
+
 /*Regiter Css*/
 .register form{
   display: flex;
@@ -120,15 +121,23 @@
 }
 
 /*Detail*/
+/* .image-detail{
+  
 
-.detail-img{
-  
- 
-  
-  align-items: center;
-}
+} */
+
+
+
 
 .image-url{
+  
 margin: auto;
 
+
+}
+
+/*Footer*/
+
+ul .link-footer Link:hover{
+  color: red
 }

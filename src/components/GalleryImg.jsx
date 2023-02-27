@@ -5,7 +5,7 @@ const GalleryImg = ({data}) => {
   const { largeImageURL, user,  id } = data;
   const navigate = useNavigate();
 
-  // console.log(data)
+  console.log(data)
 
   const detailHandle = () => {
    
