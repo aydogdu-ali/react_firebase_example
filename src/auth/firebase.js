@@ -36,18 +36,15 @@ const auth = getAuth(app);
 //navigate i parametre olarak register componentinden aldık.
 // başarılı giriş olursa anasayfaya yönlendirecek.
 
-export const register = async (email, password, displayName, navigate) => {
+export const register = async (email, password, displayName,navigate) => {
   try {
-    const user = await createUserWithEmailAndPassword(auth, email, password);
-
-    //kullanıcı kayıt olur olmaz proflini ismini güncelleme methodu (register sayfasında parametre olarak gönderiliyor.)
+    await createUserWithEmailAndPassword(auth, email, password);
+    //kullanıcı kayıt olur olmaz profilini ismini güncelleme methodu (register sayfasında parametre olarak gönderiliyor.)
     await updateProfile(auth.currentUser, {
       displayName: displayName,
     });
     toastSuccessNotify(" Everything is Okey");
     navigate("/");
-
-    return user;
   } catch (error) {
     toastErrorNotify("Error Your information is wrong");
     return false;
@@ -77,8 +74,8 @@ export const UserLogin = async (email, password, navigate) => {
 export const userObserver = (setCurrentUser) => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      const { email, displayName, photoURL } = user;
-      setCurrentUser({ email, displayName, photoURL });
+      const { email, displayName} = user;
+      setCurrentUser({ email, displayName });
     } else {
       /*çıkış yaptığında displayname  gözükmeyecek*/
       setCurrentUser(false);

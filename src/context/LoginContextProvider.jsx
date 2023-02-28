@@ -14,7 +14,7 @@ export const LoginContext = createContext();
     }, []);
 
    return (
-     <LoginContext.Provider value={{ currentUser, setCurrentUser }}>
+     <LoginContext.Provider value={{ currentUser , setCurrentUser }}>
        {children}
      </LoginContext.Provider>
    );

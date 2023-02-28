@@ -1,25 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import { register } from '../auth/firebase';
+import { register } from "../auth/firebase";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-
-
-const [firstName, setFirstName] = useState("");
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
   
-const handleSubmit= async(e)=>{
-  e.preventDefault()
-  const displayName = (firstName[0].toUpperCase() + firstName.substring(1));
-    let user = await register(email, password, displayName, navigate);
-    console.log(user)
+    const displayName = firstName[0].toUpperCase() + firstName.substring(1);
 
-
-}
+    await register(email, password, displayName, navigate);
+      window.location.reload(false);
+    console.log(displayName);
+  };
 
   return (
     <div className=" register container bg-light bg-gradient rounded mt-5 p-4 shadow p-3 mb-5 bg-body rounded">
@@ -71,12 +70,6 @@ const handleSubmit= async(e)=>{
       </form>
     </div>
   );
-  }
+};
 
-
-
-      
-   
-
-
-export default Register
+export default Register;

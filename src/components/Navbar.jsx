@@ -12,16 +12,19 @@ const Navbar = () => {
     <div>
       <div className="container d-flex justify-content-around align-items-center mt-5 mx-auto  rounded dark">
         <span>
-          <Link to="/" className="navbar-brand">
+          <Link
+            to="/"
+            className="navbar-brand"
+          >
             <img className="logo" src={Logo} alt="logo" />
           </Link>
 
-          {/*Kullanıcı varsa kayıt olduğu ismini gösterdim.*/ }
-                    <span style={{color:"red"}}>
+          {/*Kullanıcı varsa kayıt olduğu ismini gösterdim.*/}
+          <span style={{ color: "red" }}>
             {currentUser && (
               <span className="mx-3 word-spacing">
                 {" "}
-                Hello, {currentUser?.displayName}
+                Hello {currentUser?.displayName}
               </span>
             )}
           </span>
@@ -29,7 +32,10 @@ const Navbar = () => {
 
         <ul className="nav justify-content-center">
           <li className="nav-item">
-            <Link to="/" className="nav-link " >
+            <Link
+              to="/"
+              className="nav-link "
+            >
               Home
             </Link>
           </li>
@@ -39,16 +45,17 @@ const Navbar = () => {
             </Link>
           </li>
           {/*Kullanıcı yoksa register linki gözükecek varsa log out linki gözükecek.*/}
-          { !currentUser &&(<li className="nav-item">
-            <Link to="/register" className="nav-link" href="#">
-              Register
-            </Link>
-          </li>)}
+          {!currentUser && (
+            <li className="nav-item">
+              <Link to="/register" className="nav-link" href="#">
+                Register
+              </Link>
+            </li>
+          )}
 
           {currentUser ? (
             <li className="nav-item">
-              <Link to="/login" className="nav-link " 
-              onClick = {logOut}>
+              <Link to="/login" className="nav-link " onClick={logOut}>
                 Logout
               </Link>
             </li>
