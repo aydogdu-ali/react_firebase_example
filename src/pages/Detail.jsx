@@ -27,7 +27,7 @@ const Detail = () => {
 
   return (
     <div className="container mt-4">
-      {!loading && (
+      {loading && (
         <div>
           <img src={Loadingpicture} alt="loading" />
         </div>
