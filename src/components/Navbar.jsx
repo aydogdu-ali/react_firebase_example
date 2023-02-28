@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <div className="navbarr">
       <span>
-        <Link to="/" className="navbar-brand">
+        <Link to="/react_firebase_example" className="navbar-brand">
           <img className="logo" src={Logo} alt="logo" />
         </Link>
         {currentUser && (
@@ -27,7 +27,7 @@ const Navbar = () => {
 
       <ul className="nav justify-content-center">
         <li className="nav-item">
-          <Link to="/" className="nav-link ">
+          <Link to="/react_firebase_example" className="nav-link ">
             Home
           </Link>
         </li>

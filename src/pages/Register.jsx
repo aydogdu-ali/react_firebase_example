@@ -21,7 +21,7 @@ const Register = () => {
     if (user) {
       setCurrentUser(true);
       localStorage.setItem("username", user?.displayName);
-      navigate("/");
+      navigate("/gallery");
       toastSuccessNotify(`Welcome ${user?.displayName}`);
     } else {
       setCurrentUser(false);

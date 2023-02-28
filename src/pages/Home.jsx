@@ -12,7 +12,7 @@ const Home = () => {
           data-bs-ride="carousel"
         >
           <div className="carousel-inner mb-5">
-            <div className="carousel-item active" data-bs-interval={6000}>
+            <div className="carousel-item active" data-bs-interval={5000}>
               <img
                 src="https://cdn.pixabay.com/photo/2016/01/08/11/57/butterflies-1127666__340.jpg"
                 alt="butterfly"

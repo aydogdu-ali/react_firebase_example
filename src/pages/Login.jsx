@@ -18,7 +18,7 @@ const Login = () => {
     const user = await UserLogin(email, password);
     if (user) {
       setCurrentUser(true);
-      navigate("/");
+      navigate("/react_firebase_example");
       localStorage.setItem("username", user?.displayName);
       toastSuccessNotify(`Welcome ${user?.displayName}`);
     }

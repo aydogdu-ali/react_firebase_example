@@ -1,5 +1,4 @@
-{
-  
+{ 
   "name": "react_firebase_example",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +8,7 @@
     "@testing-library/user-event": "^13.2.1",
     "bootstrap": "^5.2.3",
     "firebase": "^9.17.1",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "6.3",
@@ -21,7 +21,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-    
   },
   "eslintConfig": {
     "extends": [
@@ -41,5 +40,4 @@
       "last 1 safari version"
     ]
   }
-  
 }
