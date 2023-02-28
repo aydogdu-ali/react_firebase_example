@@ -112,8 +112,14 @@
 .card-image :hover {
   transform: scale(0.98);
 }
+
+.card{
+  max-height: 400px;
+}
 .card-img {
   min-height: 300px;
+   
+
 }
 
 /*Detail*/

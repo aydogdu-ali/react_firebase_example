@@ -108,7 +108,7 @@ const Gallery = () => {
         </div>
       )}
       <div className="mb-5">
-        {/*arama sınucu 6 dan büyükse pagination gözükür.*/}
+        {/*arama sonucu 6 dan büyükse pagination gözükür.*/}
         {show.length > 6 && (
           <Pagination
             page={page}
