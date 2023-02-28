@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 const Footer = () => {
   return (
     <div className="bg-light border border-top p-3 d-flex align-items-center justify-content-center fixed-bottom">
@@ -11,7 +8,6 @@ const Footer = () => {
       </footer>
     </div>
   );
-  }
+};
 
-
-export default Footer
+export default Footer;

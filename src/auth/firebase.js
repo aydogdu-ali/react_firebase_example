@@ -11,11 +11,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 
-import {
-  toastErrorNotify,
-  toastSuccessNotify,
-  toastWarnNotify,
-} from "../assets/ToastNotify";
+import { toastErrorNotify, toastWarnNotify } from "../assets/ToastNotify";
 
 // firebase bizim için verdiği  konfigürasyon dosyasını import ediyoruz.
 const firebaseConfig = {
@@ -36,15 +32,19 @@ const auth = getAuth(app);
 //navigate i parametre olarak register componentinden aldık.
 // başarılı giriş olursa anasayfaya yönlendirecek.
 
-export const register = async (email, password, displayName,navigate) => {
+export const register = async (email, password, displayName) => {
   try {
-    await createUserWithEmailAndPassword(auth, email, password);
+    const { user } = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+      displayName
+    );
     //kullanıcı kayıt olur olmaz profilini ismini güncelleme methodu (register sayfasında parametre olarak gönderiliyor.)
     await updateProfile(auth.currentUser, {
       displayName: displayName,
     });
-    toastSuccessNotify(" Everything is Okey");
-    navigate("/");
+    return user;
   } catch (error) {
     toastErrorNotify("Error Your information is wrong");
     return false;
@@ -55,13 +55,10 @@ export const register = async (email, password, displayName,navigate) => {
 // var olan kullanıcının giriş yapması için kullanılan yöntem.
 //navigate'i parametre olarak login componentinden aldık.
 // başarılı giriş olursa anasayfaya yönlendirecek.
-export const UserLogin = async (email, password, navigate) => {
+export const UserLogin = async (email, password) => {
   try {
-    let uselogin = await signInWithEmailAndPassword(auth, email, password);
-
-    navigate("/");
-    toastSuccessNotify("Welcome");
-    console.log(uselogin);
+    const { user } = await signInWithEmailAndPassword(auth, email, password);
+    return user;
   } catch (error) {
     toastErrorNotify("Error Your information is wrong");
     console.log(error.message);
@@ -74,12 +71,12 @@ export const UserLogin = async (email, password, navigate) => {
 export const userObserver = (setCurrentUser) => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      const { email, displayName} = user;
-      setCurrentUser({ email, displayName });
+      const { email, password, displayName } = user;
+      setCurrentUser({ email, password, displayName });
     } else {
       /*çıkış yaptığında displayname  gözükmeyecek*/
       setCurrentUser(false);
-      console.log("kullanıcı çıkış yaptı");
+      return false;
     }
   });
 };
@@ -91,7 +88,7 @@ export const userObserver = (setCurrentUser) => {
 export const logOut = (navigate) => {
   try {
     signOut(auth);
-    toastWarnNotify("now!  log out");
+    toastWarnNotify("Logout Successful");
     navigate("/login");
   } catch (error) {
     console.log(error);

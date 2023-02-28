@@ -1,24 +1,30 @@
-import React, { useState } from 'react'
+import { useContext, useState } from "react";
 
 import { UserLogin } from "../auth/firebase";
 import { useNavigate } from "react-router-dom";
-
+import { toastSuccessNotify } from "../assets/ToastNotify";
+import { LoginContext } from "../context/LoginContextProvider";
 
 const Login = () => {
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
 
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { setCurrentUser } = useContext(LoginContext);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-const handleSubmit= async(e)=>{
-  e.preventDefault()
-  
-   const user = await UserLogin(email, password, navigate);
+    const user = await UserLogin(email, password);
+    if (user) {
+      setCurrentUser(true);
+      navigate("/");
+      localStorage.setItem("username", user?.displayName);
+      toastSuccessNotify(`Welcome ${user?.displayName}`);
+    }
 
- console.log(user)
-}
+    console.log(user?.displayName);
+  };
 
   return (
     <div className=" register container bg-light bg-gradient rounded mt-5 p-4 shadow p-3 mb-5 bg-body rounded">
@@ -60,13 +66,6 @@ const handleSubmit= async(e)=>{
       </form>
     </div>
   );
-  }
+};
 
-
-
-      
-   
-
-
-export default Login
-
+export default Login;

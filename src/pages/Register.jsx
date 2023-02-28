@@ -1,23 +1,31 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 
 import { register } from "../auth/firebase";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../context/LoginContextProvider";
+import { toastSuccessNotify } from "../assets/ToastNotify";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setCurrentUser } = useContext(LoginContext);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
     const displayName = firstName[0].toUpperCase() + firstName.substring(1);
+    const user = await register(email, password, displayName);
 
-    await register(email, password, displayName, navigate);
-      window.location.reload(false);
-    console.log(displayName);
+    if (user) {
+      setCurrentUser(true);
+      localStorage.setItem("username", user?.displayName);
+      navigate("/");
+      toastSuccessNotify(`Welcome ${user?.displayName}`);
+    } else {
+      setCurrentUser(false);
+    }
   };
 
   return (
@@ -31,12 +39,12 @@ const Register = () => {
           <input
             type="text"
             className="form-control  "
-            id="floatingInput"
+            id="#floatingInput"
             placeholder="Adınızı Giriniz"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
-          <label htmlFor="floatingInput">Enter Name</label>
+          <label htmlFor="#floatingInput">Enter Name</label>
         </div>
         <div className="form-floating mb-3">
           <input

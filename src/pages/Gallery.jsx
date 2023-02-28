@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/LoginContextProvider";
-import Loading from "../assets/loading.gif"
-import NODATA from "../assets/NODATA.png"
+import Loading from "../assets/loading.gif";
+import NODATA from "../assets/NODATA.png";
 import Pagination from "../components/Pagination";
 import GalleryImg from "../components/GalleryImg";
 
 const Gallery = () => {
   const [searchText, setSearchText] = useState("");
   const [show, setShow] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [sonuc, setSonuc] = useState("");
   const { currentUser } = useContext(LoginContext);
@@ -20,10 +20,9 @@ const Gallery = () => {
   const startIndex = (page - 1) * 6;
   const selectedData = show.slice(startIndex, startIndex + 6);
 
-  // const API_KEY = process.env.REACT_APP_PIXABAY_API_KEY 
+  // const API_KEY = process.env.REACT_APP_PIXABAY_API_KEY
 
-  
-const api = "31725179-e9547203f59a4095ebc0c6c08";
+  const api = "31725179-e9547203f59a4095ebc0c6c08";
   const url = `https://pixabay.com/api/?key=${api}&image_type=photo&lang=en`;
   //!----------------------------------------
   const searchAPI = `https://pixabay.com/api/?key=${api}&image_type=photo&lang=en&q=`;
@@ -38,8 +37,6 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
       .catch((error) => console.log(error));
   };
 
- 
-
   useEffect(() => {
     getAPI(url);
   }, [url]);
@@ -49,14 +46,12 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
     setPage(num);
   };
 
-
   // Api den veri çekme fonksiyonu
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchText && !currentUser) {
-        navigate("/login");
+      navigate("/login");
     } else if (!searchText) {
-      ;
     } else {
       getAPI(searchAPI + searchText);
       setSearchText("");
@@ -66,7 +61,7 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
   };
 
   return (
-    <div className="gallery mt-3 mx-auto mb-5">
+    <div className="container gallery mt-3 mb-5">
       {loading ? (
         <div className="loading-gif">
           <img src={Loading} alt="loading" />
@@ -74,7 +69,7 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
       ) : (
         <div className=" m-2 mx-auto">
           <form className="mt-1 mb-1 mx-auto" onSubmit={handleSubmit}>
-            <div className="w-25 m-2 mx-auto">
+            <div className="gallery-input w-25 mx-auto">
               <input
                 className="form-control "
                 placeholder="Car, Flower, Winter..."
@@ -93,23 +88,18 @@ const api = "31725179-e9547203f59a4095ebc0c6c08";
                   : "text-center text-uppercase mt-3 mb-1"
               }
             >
-              Search results{" "}
-              <span style={{ color: "#006a6ac0", fontWeight: "bold" }}>
-                "{sonuc}"
-              </span>
+              Search results
+              <span className="text-primary fw-bold">"{sonuc}"</span>
             </div>
           )}
           {/*gelen veri yoksa loadin false aranan kelime ile ilgili resim bulunmadığı gösterir.*/}
-          {!loading && show.length === 0 && (
+          {show && !loading && show.length === 0 && (
             <img className="nodata-img" src={NODATA} alt="nodata" />
           )}
           <div className="row  d-flex justify-content-center ">
             {selectedData.map((data, id) => {
               return (
-                <div
-                  key={id}
-                  className=" g-5 col-12 col-sm-6 col-md-4 col-lg-3 "
-                >
+                <div key={id} className="g-5 col-sm-12 col-md-6 col-xl-4">
                   <GalleryImg data={data} />
                 </div>
               );
