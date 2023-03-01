@@ -15,4 +15,8 @@
 #Herkese faydalı olması dileklerimle...
 
 https://aydogdu-ali.github.io/react_firebase_example/
-[31483ce2-d467-4c4c-ae7f-f8d5514b4fd8-min.webm](https://user-images.githubusercontent.com/108414013/222127831-fc49346e-fa80-41ab-8195-91964a9484e0.webm)
+
+
+#vidoe görseli
+https://user-images.githubusercontent.com/108414013/222128364-630b3e7c-8177-45a8-b442-562029548919.mp4
+
