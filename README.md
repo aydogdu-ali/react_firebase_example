@@ -18,5 +18,8 @@ https://aydogdu-ali.github.io/react_firebase_example/
 
 
 #vidoe görseli
-https://user-images.githubusercontent.com/108414013/222128364-630b3e7c-8177-45a8-b442-562029548919.mp4
+
+
+
+https://user-images.githubusercontent.com/108414013/222130251-db8997f6-3f99-4236-ac12-9ba2d494291b.mp4
 
